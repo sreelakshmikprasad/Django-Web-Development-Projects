@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% extends 'indexp.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<div class="col-lg-25 grid-margin stretch-card" >-->
+<div style="width:500px">
+<!--                <div class="card" style="width:500px;">-->
+<!--                  <div class="card-body">-->
+                    <h4 class="card-title" style="font-weight: bolder;color:black">Contacts Details</h4><br><br>
+<!--                    <p class="card-description"> Add class <code>.table-hover</code>-->
+<!--                    </p>-->
+<!--                    <table class="table table-hover" style="width:50%; text-align:left;">-->
+  <table style="width:1200px;text-align:left; color:black">
+                      <thead>
+                        <tr>
+                          <th style="padding-left:15px">Customer Name</th>
+                          <th style="padding-left:15px">Email Address</th>
+                          <th style="padding-left:15px">Subject</th>
+                          <th style="padding-left:15px">Message</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in data %}
+                        <tr>
+                          <td style="padding-top:20px;">{{i.CName}}</td>
+                          <td style="padding-top:20px; padding-left:15px;">{{i.CEmail}}</td>
+                          <td style="padding-top:20px; padding-left:15px;">{{i.CSubject}}</td>
+                          <td style="padding-left:15px;padding-top:20px">{{i.CMessage}}</td>
+                           <td style="padding-left:15px;padding-top:20px">
+                            <form>
+                              <button type="submit" class="btn btn-primary">Reply</button>
+                              <button type="submit" class="btn btn-primary">Reply</button>
+                            </form>
+                          </td>
+                          <td style="padding-left:15px;padding-top:20px">
+                            <form>
+                              <button type="submit" class="btn btn-light">Solved</button>
+                            </form>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+<!--                  </div>-->
+<!--                </div>-->
+              </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% extends 'indexp.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<div class="col-lg-25 grid-margin stretch-card" >-->
+<div style="width:500px">
+<!--                <div class="card" style="width:500px;">-->
+<!--                  <div class="card-body">-->
+                    <h4 class="card-title" style="font-weight: bolder;color:black">Category Details</h4><br><br>
+<!--                    <p class="card-description"> Add class <code>.table-hover</code>-->
+<!--                    </p>-->
+<!--                    <table class="table table-hover" style="width:50%; text-align:left;">-->
+  <table style="width:1200px;text-align:left; color:black">
+                      <thead>
+                        <tr>
+                          <th>Category Name</th>
+                          <th style="padding-left:15px">Image</th>
+                          <th style="padding-left:15px">Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in data %}
+                        <tr>
+                          <td style="padding-top:20px;">{{i.Category}}</td>
+                          <td style="padding-left:15px;padding-top:20px">
+                            <img src="{{i.Category_Image.url}}" style="width:50px; height:50px">
+                          </td>
+                          <td style="padding-left:15px;padding-top:20px">{{i.Description}}</td>
+                          <td style="padding-left:15px;padding-top:20px">
+                            <form action="{% url 'editcategory' dataid=i.id %}">
+                              <button type="submit" class="btn btn-primary">Edit</button>
+                            </form>
+                          </td>
+                          <td style="padding-left:15px;padding-top:20px">
+                            <form action="{% url 'deletecategory' dataid=i.id %}">
+                              <button type="submit" class="btn btn-primary">Delete</button>
+                            </form>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+<!--                  </div>-->
+<!--                </div>-->
+              </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {% if messages %}
+       {% for i in messages %}
+          {% if i.tags == 'warning' %}
+              <script>
+                  swal('{{i}}','','warning');
+              </script>
+          {% elif i.tags == 'error' %}
+              <script>
+                  swal('{{i}}','','error');
+              </script>
+          {% else %}
+              <script>
+                  swal('{{i}}','','success');
+              </script>
+          {% endif %}
+       {% endfor %}
+    {% endif %}
+</html>
+{% endblock %}
